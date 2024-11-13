@@ -36,7 +36,7 @@ class SGB30(si.SingleContactInterface):
         self.jlc.lnks[0]['name'] = "sgb30"
         self.jlc.lnks[0]['loc_pos'] = np.array([.0, .0, .0])
         self.jlc.lnks[0]['mesh_file'] = os.path.join(
-            this_dir, "meshes", "sgb30m.stl")
+            this_dir, "sgb30m.stl")
         self.jlc.lnks[0]['rgba'] = [.55, .55, .55, 1]
         # reinitialize
         self.jlc.reinitialize()
