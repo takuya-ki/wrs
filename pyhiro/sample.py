@@ -99,8 +99,8 @@ def remove_close(points, face_index, radius):
     '''
 
     tree = KDTree(points)
-    consumed = np.zeros(len(points), dtype=np.bool)
-    unique = np.zeros(len(points), dtype=np.bool)
+    consumed = np.zeros(len(points), dtype=bool)
+    unique = np.zeros(len(points), dtype=bool)
     for i in range(len(points)):
         if consumed[i]:
             continue

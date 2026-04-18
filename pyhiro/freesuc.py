@@ -140,9 +140,9 @@ class Freesuc(object):
             count=(1000 if nverts * numpointsoververts > 1000
                    else nverts * numpointsoververts))
         self.objsamplepnts = np.ndarray(
-            shape=(self.facets.shape[0],), dtype=np.object)
+            shape=(self.facets.shape[0],), dtype=object)
         self.objsamplenrmls = np.ndarray(
-            shape=(self.facets.shape[0],), dtype=np.object)
+            shape=(self.facets.shape[0],), dtype=object)
         for i, faces in enumerate(self.facets):
             for face in faces:
                 sample_idx = np.where(face_idx == face)[0]
@@ -185,10 +185,10 @@ class Freesuc(object):
         # ref = refine
         self.objsamplepnts_ref = np.ndarray(
             shape=(self.facets.shape[0],),
-            dtype=np.object)
+            dtype=object)
         self.objsamplenrmls_ref = np.ndarray(
             shape=(self.facets.shape[0],),
-            dtype=np.object)
+            dtype=object)
         self.facet2dbdries = []
         for i, faces in enumerate(self.facets):
             facetp = None
@@ -260,10 +260,10 @@ class Freesuc(object):
 
         self.objsamplepnts_refcls = np.ndarray(
             shape=(self.facets.shape[0],),
-            dtype=np.object)
+            dtype=object)
         self.objsamplenrmls_refcls = np.ndarray(
             shape=(self.facets.shape[0],),
-            dtype=np.object)
+            dtype=object)
         for i, facet in enumerate(self.facets):
             self.objsamplepnts_refcls[i] = np.empty(shape=(0, 0))
             self.objsamplenrmls_refcls[i] = np.empty(shape=(0, 0))
@@ -295,10 +295,10 @@ class Freesuc(object):
 
         self.objsamplepnts_refcls = np.ndarray(
             shape=(self.facets.shape[0],),
-            dtype=np.object)
+            dtype=object)
         self.objsamplenrmls_refcls = np.ndarray(
             shape=(self.facets.shape[0],),
-            dtype=np.object)
+            dtype=object)
         for i, facet in enumerate(self.facets):
             self.objsamplepnts_refcls[i] = []
             self.objsamplenrmls_refcls[i] = []

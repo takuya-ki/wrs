@@ -227,7 +227,7 @@ class TubePuzzle(object):
         date: 20190828
         """
 
-        return [np.int(np.floor(i/self._ncolumn)), i%self._ncolumn]
+        return [int(np.floor(i/self._ncolumn)), i%self._ncolumn]
 
     def _eleexist(self, i, j):
         """

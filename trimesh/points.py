@@ -214,8 +214,8 @@ def remove_close(points, radius):
     from scipy.spatial import cKDTree as KDTree
 
     tree     = KDTree(points)
-    consumed = np.zeros(len(points), dtype=np.bool)
-    unique   = np.zeros(len(points), dtype=np.bool)
+    consumed = np.zeros(len(points), dtype=bool)
+    unique   = np.zeros(len(points), dtype=bool)
     for i in range(len(points)):
         if consumed[i]: continue
         neighbors = tree.query_ball_point(points[i], r=radius)
@@ -232,8 +232,8 @@ def remove_close_withfaceid(points, face_index, radius):
     from scipy.spatial import cKDTree as KDTree
 
     tree     = KDTree(points)
-    consumed = np.zeros(len(points), dtype=np.bool)
-    unique   = np.zeros(len(points), dtype=np.bool)
+    consumed = np.zeros(len(points), dtype=bool)
+    unique   = np.zeros(len(points), dtype=bool)
     for i in range(len(points)):
         if consumed[i]: continue
         neighbors = tree.query_ball_point(points[i], r=radius)
@@ -253,7 +253,7 @@ def remove_close_set(points_fixed, points_reduce, radius):
     tree_reduce = KDTree(points_reduce)
     reduce_duplicates = tree_fixed.query_ball_tree(tree_reduce, r = radius)
     reduce_duplicates = np.unique(np.hstack(reduce_duplicates).astype(int))
-    reduce_mask = np.ones(len(points_reduce), dtype=np.bool)
+    reduce_mask = np.ones(len(points_reduce), dtype=bool)
     reduce_mask[reduce_duplicates] = False
     points_clean = points_reduce[reduce_mask]
     return points_clean

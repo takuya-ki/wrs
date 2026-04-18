@@ -34,8 +34,8 @@ def merge_vertices_kdtree(mesh, angle=None):
     '''
 
     tree = mesh.kdtree()
-    used    = np.zeros(len(mesh.vertices), dtype=np.bool)
-    inverse = np.arange(len(mesh.vertices), dtype=np.int)
+    used    = np.zeros(len(mesh.vertices), dtype=bool)
+    inverse = np.arange(len(mesh.vertices), dtype=int)
     unique  = deque()
 
     vectors = mesh.vertex_normals
@@ -133,7 +133,7 @@ def float_to_int(data, digits=None):
             
     if digits is None: 
         digits = decimal_to_digits(tol.merge)
-    elif isinstance(digits, float) or isinstance(digits, np.float):
+    elif isinstance(digits, float) or isinstance(digits, float):
         digits = decimal_to_digits(digits)
     elif not (isinstance(digits, int) or isinstance(digits, np.integer)):
         log.warn('Digits were passed as %s!', digits.__class__.__name__)
@@ -256,7 +256,7 @@ def unique_value_in_row(data, unique=None):
     if unique is None:
         unique = np.unique(data)
     data = np.asanyarray(data)
-    result = np.zeros_like(data, dtype=np.bool, subok=False)
+    result = np.zeros_like(data, dtype=bool, subok=False)
     for value in unique:
         test = np.equal(data, value)
         test_ok = test.sum(axis=1) == 1
@@ -368,7 +368,7 @@ def group_vectors(vectors,
     dist_max            = np.tan(angle)
     unit_vectors, valid = unitize(vectors, check_valid = True)
     valid_index         = np.nonzero(valid)[0]
-    consumed            = np.zeros(len(unit_vectors), dtype=np.bool)
+    consumed            = np.zeros(len(unit_vectors), dtype=bool)
     tree                = KDTree(unit_vectors)
     unique_vectors      = deque()
     aligned_index       = deque()
@@ -404,7 +404,7 @@ def group_vectors_spherical(vectors,
     return new_vectors, groups
 
 def group_distance(values, distance):
-    consumed = np.zeros(len(values), dtype=np.bool)
+    consumed = np.zeros(len(values), dtype=bool)
     tree     = KDTree(values)
 
     # (n, d) set of values that are unique
@@ -415,7 +415,7 @@ def group_distance(values, distance):
     for index, value in enumerate(values):
         if consumed[index]: 
             continue
-        group = np.array(tree.query_ball_point(value, distance), dtype=np.int)
+        group = np.array(tree.query_ball_point(value, distance), dtype=int)
         consumed[group] = True
         unique.append(np.median(values[group], axis=0))
         groups.append(group)

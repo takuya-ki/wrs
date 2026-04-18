@@ -263,7 +263,7 @@ def closest_point(triangles, points):
     # store the location of the closest point
     result = np.zeros_like(points)
     # which points still need to be handled
-    remain = np.ones(len(points), dtype=np.bool)
+    remain = np.ones(len(points), dtype=bool)
 
     # if we dot product this against a (n, 3)
     # it is equivalent but faster than array.sum(axis=1)

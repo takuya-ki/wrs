@@ -275,7 +275,7 @@ def cylinder(radius, height, sections=32):
     index[-1] = 1
 
     faces = np.tile(index,(1,2)).reshape(-1)[1:-1].reshape((-1,2))
-    faces = np.column_stack((np.zeros(len(faces), dtype=np.int), faces))
+    faces = np.column_stack((np.zeros(len(faces), dtype=int), faces))
 
     cylinder = extrude_triangulation(vertices = vertices, 
                                      faces  = faces, 
