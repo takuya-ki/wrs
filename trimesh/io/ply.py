@@ -161,7 +161,7 @@ def ply_populate_listsize(file_obj, elements):
                 else: 
                     offset = np.dtype(prior_data).itemsize()
                 file_obj.seek(p_current+offset)
-                size = np.fromstring(file_obj.read(field_dtype.itemsize), 
+                size = np.frombuffer(file_obj.read(field_dtype.itemsize), 
                                      dtype=field_dtype)[0]
                 props[k] = props[k].replace('$LIST', str(size))
             prior_data += props[k] +','
@@ -178,7 +178,7 @@ def ply_populate_data(file_obj, elements):
         items = list(elements[key]['properties'].items())
         dtype = np.dtype(items)
         data  = file_obj.read(elements[key]['length'] * dtype.itemsize)
-        elements[key]['data'] = np.fromstring(data, dtype=dtype)
+        elements[key]['data'] = np.frombuffer(data, dtype=dtype)
     return elements
 
 def ply_elements_kwargs(elements):

@@ -656,9 +656,9 @@ def encoded_to_array(encoded):
     shape = encoded['shape']
     dtype = np.dtype(encoded['dtype'])
     if 'base64' in encoded:
-        array = np.fromstring(base64.b64decode(encoded['base64']), dtype).reshape(shape)
+        array = np.frombuffer(base64.b64decode(encoded['base64']), dtype).reshape(shape)
     elif 'binary' in encoded:
-        array = np.fromstring(encoded['binary'], 
+        array = np.frombuffer(encoded['binary'], 
                               dtype = dtype, 
                               count = np.product(shape))
     array = array.reshape(shape)

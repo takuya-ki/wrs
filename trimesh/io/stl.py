@@ -20,7 +20,7 @@ def load_stl_binary(file_obj):
     than looping methods or ASCII STL. 
     '''
 
-    header = np.fromstring(file_obj.read(84), dtype=_stl_dtype_header)
+    header = np.frombuffer(file_obj.read(84), dtype=_stl_dtype_header)
 
     # now we check the length from the header versus the length of the file
     # data_start should always be position 84, but hard coding that felt ugly
@@ -46,7 +46,7 @@ def load_stl_binary(file_obj):
     # all of our vertices will be loaded in order due to the STL format, 
     # so faces are just sequential indices reshaped. 
     faces = np.arange(header['face_count'] * 3).reshape((-1,3))
-    blob  = np.fromstring(file_obj.read(), dtype=_stl_dtype)
+    blob  = np.frombuffer(file_obj.read(), dtype=_stl_dtype)
     
     result =  {'vertices'     : blob['vertices'].reshape((-1,3)),
                'face_normals' : blob['normals'].reshape((-1,3)),
